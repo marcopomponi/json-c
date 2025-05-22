@@ -66,7 +66,7 @@ static int is_valid_index(const char *path, size_t *idx)
 		return 0;
 	}
 	/* RFC states base-10 decimals */
-	for (i = 0; i < len; i++)
+	for (i=0; i < len; i++)
 	{
 		if (!is_plain_digit(path[i]))
 		{
@@ -158,7 +158,7 @@ static int json_pointer_result_get_recursive(struct json_object *obj, char *path
                                              struct json_pointer_get_result *res)
 {
 	struct json_object *parent_obj = obj;
-	size_t idx = 0;
+	size_t idx=0;
 	char *endp;
 	int rc;
 
@@ -268,7 +268,7 @@ int json_pointer_get(struct json_object *obj, const char *path, struct json_obje
 int json_pointer_getf(struct json_object *obj, struct json_object **res, const char *path_fmt, ...)
 {
 	char *path_copy = NULL;
-	int rc = 0;
+	int rc=0;
 	va_list args;
 
 	if (!obj || !path_fmt)
@@ -362,7 +362,7 @@ int json_pointer_setf(struct json_object **obj, struct json_object *value, const
 	char *path_copy = NULL;
 	struct json_object *set = NULL;
 	va_list args;
-	int rc = 0;
+	int rc=0;
 
 	if (!obj || !path_fmt)
 	{

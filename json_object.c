@@ -185,7 +185,7 @@ static inline const char *get_string_component(const struct json_object *jso)
 
 static int json_escape_str(struct printbuf *pb, const char *str, size_t len, int flags)
 {
-	size_t pos = 0, start_offset = 0;
+	size_t pos=0, start_offset=0;
 	unsigned char c;
 	while (len)
 	{
@@ -408,7 +408,7 @@ void json_object_set_serializer(json_object *jso, json_object_to_json_string_fn 
 const char *json_object_to_json_string_length(struct json_object *jso, int flags, size_t *length)
 {
 	const char *r = NULL;
-	size_t s = 0;
+	size_t s=0;
 
 	if (!jso)
 	{
@@ -463,7 +463,7 @@ static void indent(struct printbuf *pb, int level, int flags)
 static int json_object_object_to_json_string(struct json_object *jso, struct printbuf *pb,
                                              int level, int flags)
 {
-	int had_children = 0;
+	int had_children=0;
 	struct json_object_iter iter;
 
 	printbuf_strappend(pb, "{" /*}*/);
@@ -718,10 +718,10 @@ struct json_object *json_object_new_int(int32_t i)
 
 int32_t json_object_get_int(const struct json_object *jso)
 {
-	int64_t cint64 = 0;
+	int64_t cint64=0;
 	double cdouble;
 	enum json_type o_type;
-	errno = 0;
+	errno=0;
 
 	if (!jso)
 		return 0;
@@ -819,7 +819,7 @@ struct json_object *json_object_new_uint64(uint64_t i)
 int64_t json_object_get_int64(const struct json_object *jso)
 {
 	int64_t cint;
-	errno = 0;
+	errno=0;
 
 	if (!jso)
 		return 0;
@@ -872,7 +872,7 @@ int64_t json_object_get_int64(const struct json_object *jso)
 uint64_t json_object_get_uint64(const struct json_object *jso)
 {
 	uint64_t cuint;
-	errno = 0;
+	errno=0;
 
 	if (!jso)
 		return 0;
@@ -1086,8 +1086,8 @@ static int json_object_double_to_json_string_format(struct json_object *jso, str
 	else
 	{
 		const char *std_format = "%.17g";
-		int format_drops_decimals = 0;
-		int looks_numeric = 0;
+		int format_drops_decimals=0;
+		int looks_numeric=0;
 
 		if (!format)
 		{
@@ -1138,7 +1138,7 @@ static int json_object_double_to_json_string_format(struct json_object *jso, str
 			}
 			/* drop trailing zeroes */
 			if (*p != 0)
-				*(++p) = 0;
+				*(++p)=0;
 			size = p - buf;
 		}
 	}
@@ -1239,7 +1239,7 @@ double json_object_get_double(const struct json_object *jso)
 		}
 	case json_type_boolean: return JC_BOOL_C(jso)->c_boolean;
 	case json_type_string:
-		errno = 0;
+		errno=0;
 		cdouble = strtod(get_string_component(jso), &errPtr);
 
 		/* if conversion stopped at the first character, return 0.0 */
@@ -1272,7 +1272,7 @@ double json_object_get_double(const struct json_object *jso)
 		 * See CERT guideline ERR30-C
 		 */
 		if ((HUGE_VAL == cdouble || -HUGE_VAL == cdouble) && (ERANGE == errno))
-			cdouble = 0.0;
+			cdouble=0.0;
 		return cdouble;
 	default: errno = EINVAL; return 0.0;
 	}
@@ -1405,7 +1405,7 @@ static int _json_object_set_string_len(json_object *jso, const char *s, size_t l
 	if (curlen < 0) {
 		if (len == 0) {
 			free(JC_STRING(jso)->c_string.pdata);
-			JC_STRING(jso)->len = curlen = 0;
+			JC_STRING(jso)->len = curlen=0;
 		} else {
 			curlen = -curlen;
 		}
@@ -1455,11 +1455,11 @@ int json_object_set_string_len(json_object *jso, const char *s, int len)
 static int json_object_array_to_json_string(struct json_object *jso, struct printbuf *pb, int level,
                                             int flags)
 {
-	int had_children = 0;
+	int had_children=0;
 	size_t ii;
 
 	printbuf_strappend(pb, "[");
-	for (ii = 0; ii < json_object_array_length(jso); ii++)
+	for (ii=0; ii < json_object_array_length(jso); ii++)
 	{
 		struct json_object *val;
 		if (had_children)
@@ -1600,7 +1600,7 @@ static int json_array_equal(struct json_object *jso1, struct json_object *jso2)
 	if (len != json_object_array_length(jso2))
 		return 0;
 
-	for (i = 0; i < len; i++)
+	for (i=0; i < len; i++)
 	{
 		if (!json_object_equal(json_object_array_get_idx(jso1, i),
 		                       json_object_array_get_idx(jso2, i)))
@@ -1800,7 +1800,7 @@ static int json_object_deep_copy_recursive(struct json_object *src, struct json_
 	struct json_object_iter iter;
 	size_t src_array_len, ii;
 
-	int shallow_copy_rc = 0;
+	int shallow_copy_rc=0;
 	shallow_copy_rc = shallow_copy(src, parent, key_in_parent, index_in_parent, dst);
 	/* -1=error, 1=object created ok, 2=userdata set */
 	if (shallow_copy_rc < 1)
@@ -1836,7 +1836,7 @@ static int json_object_deep_copy_recursive(struct json_object *src, struct json_
 
 	case json_type_array:
 		src_array_len = json_object_array_length(src);
-		for (ii = 0; ii < src_array_len; ii++)
+		for (ii=0; ii < src_array_len; ii++)
 		{
 			struct json_object *jso = NULL;
 			struct json_object *jso1 = json_object_array_get_idx(src, ii);

@@ -13,7 +13,7 @@ struct myinfo
 	int value;
 };
 
-static int freeit_was_called = 0;
+static int freeit_was_called=0;
 static void freeit(json_object *jso, void *userdata)
 {
 	struct myinfo *info = userdata;
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	       json_object_to_json_string(my_object));
 
 	printf("Next line of output should be from the custom freeit function:\n");
-	freeit_was_called = 0;
+	freeit_was_called=0;
 	json_object_set_serializer(my_object, NULL, NULL, NULL);
 	assert(freeit_was_called);
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 	       json_object_to_json_string(my_object));
 	printf("Next line of output should be from the custom freeit function:\n");
 
-	freeit_was_called = 0;
+	freeit_was_called=0;
 	json_object_put(my_object);
 	assert(freeit_was_called);
 

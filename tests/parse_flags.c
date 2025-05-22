@@ -33,11 +33,11 @@ static struct
 int parse_flags(int argc, char **argv)
 {
 	int arg_idx;
-	int sflags = 0;
+	int sflags=0;
 	for (arg_idx = 1; arg_idx < argc; arg_idx++)
 	{
 		int jj;
-		for (jj = 0; jj < (int)NELEM(format_args); jj++)
+		for (jj=0; jj < (int)NELEM(format_args); jj++)
 		{
 			if (strcasecmp(argv[arg_idx], format_args[jj].arg) == 0)
 			{

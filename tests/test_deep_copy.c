@@ -114,7 +114,7 @@ int main(int argc, char **argv)
 {
 	struct json_object *src1, *src2, *src3;
 	struct json_object *dst1 = NULL, *dst2 = NULL, *dst3 = NULL;
-	int benchmark = 0;
+	int benchmark=0;
 
 	if (argc > 1 && strcmp(argv[1], "--benchmark") == 0)
 	{
@@ -238,7 +238,7 @@ static void do_benchmark(json_object *src2)
 	time_t start = time(NULL);
 
 	start = time(NULL);
-	for (ii = 0; ii < iterations; ii++)
+	for (ii=0; ii < iterations; ii++)
 	{
 		dst2 = json_tokener_parse(json_object_get_string(src2));
 		json_object_put(dst2);
@@ -249,7 +249,7 @@ static void do_benchmark(json_object *src2)
 
 	start = time(NULL);
 	dst2 = NULL;
-	for (ii = 0; ii < iterations; ii++)
+	for (ii=0; ii < iterations; ii++)
 	{
 		json_object_deep_copy(src2, &dst2, NULL);
 		json_object_put(dst2);

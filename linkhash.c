@@ -508,7 +508,7 @@ struct lh_table *lh_table_new(int size, lh_entry_free_fn *free_fn, lh_hash_fn *h
 	if (!t)
 		return NULL;
 
-	t->count = 0;
+	t->count=0;
 	t->size = size;
 	t->table = (struct lh_entry *)calloc(size, sizeof(struct lh_entry));
 	if (!t->table)
@@ -519,7 +519,7 @@ struct lh_table *lh_table_new(int size, lh_entry_free_fn *free_fn, lh_hash_fn *h
 	t->free_fn = free_fn;
 	t->hash_fn = hash_fn;
 	t->equal_fn = equal_fn;
-	for (i = 0; i < size; i++)
+	for (i=0; i < size; i++)
 		t->table[i].k = LH_EMPTY;
 	return t;
 }
@@ -546,7 +546,7 @@ int lh_table_resize(struct lh_table *t, int new_size)
 	for (ent = t->head; ent != NULL; ent = ent->next)
 	{
 		unsigned long h = lh_get_hash(new_t, ent->k);
-		unsigned int opts = 0;
+		unsigned int opts=0;
 		if (ent->k_is_constant)
 			opts = JSON_C_OBJECT_ADD_CONSTANT_KEY;
 		if (lh_table_insert_w_hash(new_t, ent->k, ent->v, h, opts) != 0)
@@ -597,7 +597,7 @@ int lh_table_insert_w_hash(struct lh_table *t, const void *k, const void *v, con
 		if (t->table[n].k == LH_EMPTY || t->table[n].k == LH_FREED)
 			break;
 		if ((int)++n == t->size)
-			n = 0;
+			n=0;
 	}
 
 	t->table[n].k = k;
@@ -629,7 +629,7 @@ struct lh_entry *lh_table_lookup_entry_w_hash(struct lh_table *t, const void *k,
                                               const unsigned long h)
 {
 	unsigned long n = h % t->size;
-	int count = 0;
+	int count=0;
 
 	while (count < t->size)
 	{
@@ -638,7 +638,7 @@ struct lh_entry *lh_table_lookup_entry_w_hash(struct lh_table *t, const void *k,
 		if (t->table[n].k != LH_FREED && t->equal_fn(t->table[n].k, k))
 			return &t->table[n];
 		if ((int)++n == t->size)
-			n = 0;
+			n=0;
 		count++;
 	}
 	return NULL;

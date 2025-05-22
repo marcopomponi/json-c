@@ -7,7 +7,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
 
 	struct json_tokener *tokener =
 	    json_tokener_new_ex(fdp.ConsumeIntegralInRange<int>(1, JSON_TOKENER_DEFAULT_DEPTH));
-	int flags = 0;
+	int flags=0;
 	if (fdp.ConsumeBool()) {
 		flags |= JSON_TOKENER_VALIDATE_UTF8;
 	}

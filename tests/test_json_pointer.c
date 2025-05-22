@@ -118,7 +118,7 @@ static void test_example_get(void)
 	assert(0 == strcmp("bar", json_object_get_string(jo2)));
 	printf("PASSED - GET - /foo/0 == 'bar'\n");
 
-	for (i = 0; json_pointers[i].s; i++)
+	for (i=0; json_pointers[i].s; i++)
 		test_example_int(jo1, json_pointers[i].s, json_pointers[i].i);
 
 	json_object_put(jo1);
@@ -170,7 +170,7 @@ static void test_wrong_inputs_get(void)
 
 	/* Test leading '/' missing */
 	jo2 = NULL;
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "foo/bar", NULL));
 	assert(0 != json_pointer_get(jo1, "foo/bar", &jo2));
 	assert(errno == EINVAL);
@@ -178,51 +178,51 @@ static void test_wrong_inputs_get(void)
 	printf("PASSED - GET - MISSING /\n");
 
 	/* Test combinations of NULL params for input json & path */
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(NULL, "foo/bar", NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(NULL, NULL, NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_getf(NULL, NULL, NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, NULL, NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_getf(jo1, NULL, NULL));
 	assert(errno == EINVAL);
 	printf("PASSED - GET - NULL INPUTS\n");
 
 	/* Test invalid indexes for array */
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "/foo/a", NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "/foo/01", NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_getf(jo1, NULL, "/%s/a", "foo"));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "/foo/-", NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	/* Test optimized array path */
 	assert(0 != json_pointer_get(jo1, "/foo/4", NULL));
 	assert(errno == ENOENT);
-	errno = 0;
+	errno=0;
 	/* Test non-optimized array path */
 	assert(0 != json_pointer_getf(jo1, NULL, "%s", "/foo/22"));
 	assert(errno == ENOENT);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_getf(jo1, NULL, "/%s/%d", "foo", 22));
 	assert(errno == ENOENT);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "/foo/-1", NULL));
 	assert(errno == EINVAL);
-	errno = 0;
+	errno=0;
 	assert(0 != json_pointer_get(jo1, "/foo/10", NULL));
 	assert(errno == ENOENT);
 	printf("PASSED - GET - INVALID INDEXES\n");

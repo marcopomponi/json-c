@@ -86,7 +86,7 @@ void test_json_patch_using_file(const char *testdir, const char *filename)
 		exit(EXIT_FAILURE);
 	}
 
-	for (ii = 0; ii < json_object_array_length(jo); ii++) {
+	for (ii=0; ii < json_object_array_length(jo); ii++) {
 		struct json_object *jo1 = json_object_array_get_idx(jo, ii);
 		test_json_patch_op(jo1);
 	}

@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
 	printf("==== delete-in-loop test starting ====\n");
 
-	int orig_count = 0;
+	int orig_count=0;
 	json_object_object_foreach(my_object, key0, val0)
 	{
 		printf("Key at index %d is [%s] %d", orig_count, key0, (val0 == NULL));
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	printf("==== replace-value first loop starting ====\n");
 
 	const char *original_key = NULL;
-	orig_count = 0;
+	orig_count=0;
 	json_object_object_foreach(my_object, key, val)
 	{
 		printf("Key at index %d is [%s] %d\n", orig_count, key, (val == NULL));
@@ -55,8 +55,8 @@ int main(int argc, char **argv)
 
 	printf("==== second loop starting ====\n");
 
-	int new_count = 0;
-	int retval = 0;
+	int new_count=0;
+	int retval=0;
 	json_object_object_foreach(my_object, key2, val2)
 	{
 		printf("Key at index %d is [%s] %d\n", new_count, key2, (val2 == NULL));

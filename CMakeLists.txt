@@ -296,12 +296,12 @@ int main(int c, char *v) { return 0;}
 HAS_GNU_WARNING_LONG)
 
 check_c_source_compiles(
-  "int main() { int i, x = 0; i = __sync_add_and_fetch(&x,1); return x; }"
+  "int main() { int i, x=0; i = __sync_add_and_fetch(&x,1); return x; }"
   HAVE_ATOMIC_BUILTINS)
 
 if (NOT DISABLE_THREAD_LOCAL_STORAGE)
   check_c_source_compiles(
-    "__thread int x = 0; int main() { return 0; }"
+    "__thread int x=0; int main() { return 0; }"
     HAVE___THREAD)
 
   if (HAVE___THREAD)

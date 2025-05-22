@@ -12,7 +12,7 @@
 #include "json_object_private.h"
 
 /* Avoid compiler warnings about diving by constant zero */
-double zero_dot_zero = 0.0;
+double zero_dot_zero=0.0;
 
 int main(int argc, char **argv)
 {

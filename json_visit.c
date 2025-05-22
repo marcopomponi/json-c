@@ -79,7 +79,7 @@ static int _json_c_visit(json_object *jso, json_object *parent_jso, const char *
 	{
 		size_t array_len = json_object_array_length(jso);
 		size_t ii;
-		for (ii = 0; ii < array_len; ii++)
+		for (ii=0; ii < array_len; ii++)
 		{
 			json_object *child = json_object_array_get_idx(jso, ii);
 			userret = _json_c_visit(child, jso, NULL, &ii, userfunc, userarg);

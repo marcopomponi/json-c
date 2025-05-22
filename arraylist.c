@@ -51,7 +51,7 @@ struct array_list *array_list_new2(array_list_free_fn *free_fn, int initial_size
 	if (!arr)
 		return NULL;
 	arr->size = initial_size;
-	arr->length = 0;
+	arr->length=0;
 	arr->free_fn = free_fn;
 	if (!(arr->array = (void **)malloc(arr->size * sizeof(void *))))
 	{
@@ -64,7 +64,7 @@ struct array_list *array_list_new2(array_list_free_fn *free_fn, int initial_size
 extern void array_list_free(struct array_list *arr)
 {
 	size_t i;
-	for (i = 0; i < arr->length; i++)
+	for (i=0; i < arr->length; i++)
 		if (arr->array[i])
 			arr->free_fn(arr->array[i]);
 	free(arr->array);

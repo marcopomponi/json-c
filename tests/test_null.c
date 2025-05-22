@@ -22,7 +22,7 @@ int main(void)
 	const char *json = json_object_to_json_string(string);
 
 	int strings_match = !strcmp(expected, json);
-	int retval = 0;
+	int retval=0;
 	if (strings_match)
 	{
 		printf("JSON write result is correct: %s\n", json);
@@ -47,7 +47,7 @@ int main(void)
 		const char *parsed_cstr = json_object_get_string(parsed_str);
 		int ii;
 		printf("Re-parsed object string len=%d, chars=[", parsed_len);
-		for (ii = 0; ii < parsed_len; ii++)
+		for (ii=0; ii < parsed_len; ii++)
 		{
 			printf("%s%d", (ii ? ", " : ""), (int)parsed_cstr[ii]);
 		}

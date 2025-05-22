@@ -54,7 +54,7 @@ static void single_incremental_parse(const char *test_string, int clear_serializ
 
 	tok = json_tokener_new();
 	size_t test_string_len = strlen(test_string) + 1; // Including '\0' !
-	for (ii = 0; ii < test_string_len; ii += chunksize)
+	for (ii=0; ii < test_string_len; ii += chunksize)
 	{
 		int len_to_parse = chunksize;
 		if (ii + chunksize > test_string_len)
@@ -656,8 +656,8 @@ static void test_incremental_parse(void)
 	int ii;
 	int num_ok, num_error;
 
-	num_ok = 0;
-	num_error = 0;
+	num_ok=0;
+	num_error=0;
 
 	printf("Starting incremental tests.\n");
 	printf("Note: quotes and backslashes seen in the output here are literal values passed\n");
@@ -671,9 +671,9 @@ static void test_incremental_parse(void)
 
 	/* test incremental parsing in various forms */
 	tok = json_tokener_new();
-	for (ii = 0; incremental_steps[ii].string_to_parse != NULL; ii++)
+	for (ii=0; incremental_steps[ii].string_to_parse != NULL; ii++)
 	{
-		int this_step_ok = 0;
+		int this_step_ok=0;
 		struct incremental_step *step = &incremental_steps[ii];
 		int length = step->length;
 		size_t expected_char_offset;

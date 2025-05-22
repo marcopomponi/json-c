@@ -37,7 +37,7 @@ static void test_lot_of_adds(void)
 	char key[50];
 	json_object *jobj = json_object_new_object();
 	assert(jobj != NULL);
-	for (ii = 0; ii < 500; ii++)
+	for (ii=0; ii < 500; ii++)
 	{
 		snprintf(key, sizeof(key), "k%d", ii);
 		json_object *iobj = json_object_new_int(ii);
@@ -64,7 +64,7 @@ int main(void)
 	printf("input: %s\n", input);
 
 	int strings_match = !strcmp(expected, unjson);
-	int retval = 0;
+	int retval=0;
 	if (strings_match)
 	{
 		printf("JSON parse result is correct: %s\n", unjson);

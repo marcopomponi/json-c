@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 {
 	json_object *new_obj;
 #ifdef TEST_FORMATTED
-	int sflags = 0;
+	int sflags=0;
 #endif
 
 	MC_SET_DEBUG(1);

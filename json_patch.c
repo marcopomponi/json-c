@@ -32,7 +32,7 @@
 #define _set_err(_errval, _errmsg) do { \
 	patch_error->errno_code = (_errval); \
 	patch_error->errmsg = (_errmsg); \
-	errno = 0;  /* To avoid confusion */ \
+	errno=0;  /* To avoid confusion */ \
 } while (0)
 
 #define _set_err_from_ptrget(_errval, _fieldname) do { \
@@ -40,7 +40,7 @@
 	patch_error->errmsg = (_errval) == ENOENT ? \
 		"Did not find element referenced by " _fieldname " field" : \
 		"Invalid " _fieldname " field"; \
-	errno = 0;  /* To avoid confusion */ \
+	errno=0;  /* To avoid confusion */ \
 } while(0)
 
 /**
@@ -258,14 +258,14 @@ int json_patch_apply(struct json_object *copy_from, struct json_object *patch,
                      struct json_object **base, struct json_patch_error *patch_error)
 {
 	size_t ii;
-	int rc = 0;
+	int rc=0;
 	struct json_patch_error placeholder;
 
 	if (!patch_error)
 		patch_error = &placeholder;
 
 	patch_error->patch_failure_idx = SIZE_T_MAX;
-	patch_error->errno_code = 0;
+	patch_error->errno_code=0;
 
 	if (base == NULL|| 
 	    (*base == NULL && copy_from == NULL) ||
@@ -290,7 +290,7 @@ int json_patch_apply(struct json_object *copy_from, struct json_object *patch,
 	}
 
 	/* Go through all operations ; apply them on res */
-	for (ii = 0; ii < json_object_array_length(patch); ii++) {
+	for (ii=0; ii < json_object_array_length(patch); ii++) {
 		struct json_object *jop, *jpath;
 		struct json_object *patch_elem = json_object_array_get_idx(patch, ii);
 		const char *op, *path;

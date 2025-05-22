@@ -37,8 +37,8 @@
 
 static int formatted_output = JSON_C_TO_STRING_SPACED;
 static int show_output = 1;
-static int strict_mode = 0;
-static int color = 0;
+static int strict_mode=0;
+static int color=0;
 static const char *fname = NULL;
 
 #ifndef HAVE_JSON_TOKENER_GET_PARSE_END
@@ -87,12 +87,12 @@ static int parseit(int fd, int (*callback)(struct json_object *))
 	//  json_object_from_fd isn't flexible enough, and mirroring
 	//   everything you can do with a tokener into json_util.c seems
 	//   like the wrong approach.
-	size_t total_read = 0;
+	size_t total_read=0;
 	while ((ret = read(fd, buf, sizeof(buf))) > 0)
 	{
 		size_t retu = (size_t)ret;  // We know it's positive
 		total_read += retu;
-		size_t start_pos = 0;
+		size_t start_pos=0;
 		while (start_pos != retu)
 		{
 			obj = json_tokener_parse_ex(tok, &buf[start_pos], retu - start_pos);
@@ -184,7 +184,7 @@ int main(int argc, char **argv)
 		{
 		case 'f': formatted_output = JSON_C_TO_STRING_PRETTY; break;
 		case 'F': formatted_output = atoi(optarg); break;
-		case 'n': show_output = 0; break;
+		case 'n': show_output=0; break;
 		case 's': strict_mode = 1; break;
 		case 'c': color = JSON_C_TO_STRING_COLOR; break;
 		case 'h': usage(argv[0], 0, NULL);

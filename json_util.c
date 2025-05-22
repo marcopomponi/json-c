@@ -208,7 +208,7 @@ static int _json_object_to_fd(int fd, struct json_object *obj, int flags, const 
 	}
 
 	wsize = strlen(json_str);
-	wpos = 0;
+	wpos=0;
 	while (wpos < wsize)
 	{
 		if ((ret = write(fd, json_str + wpos, wsize - wpos)) < 0)
@@ -245,7 +245,7 @@ int json_parse_int64(const char *buf, int64_t *retval)
 	char *end = NULL;
 	int64_t val;
 
-	errno = 0;
+	errno=0;
 	val = strtoll(buf, &end, 10);
 	if (end != buf)
 		*retval = val;
@@ -262,7 +262,7 @@ int json_parse_uint64(const char *buf, uint64_t *retval)
 	char *end = NULL;
 	uint64_t val;
 
-	errno = 0;
+	errno=0;
 	while (*buf == ' ')
 		buf++;
 	if (*buf == '-')

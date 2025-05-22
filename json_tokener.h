@@ -293,7 +293,7 @@ JSON_EXPORT void json_tokener_set_flags(struct json_tokener *tok, int flags);
  * @code
 json_object *jobj = NULL;
 const char *mystring = NULL;
-int stringlen = 0;
+int stringlen=0;
 enum json_tokener_error jerr;
 do {
 	mystring = ...  // get JSON string, e.g. read from file, etc...

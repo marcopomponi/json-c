@@ -5,7 +5,7 @@
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
 	FuzzedDataProvider fdp(data, size);
 	json_object *my_array = json_object_new_array();
-	for (int i = 0; i < 3; ++i) {
+	for (int i=0; i < 3; ++i) {
 		json_object *jso = json_tokener_parse(fdp.ConsumeRandomLengthString(10).c_str());
 		if (jso == NULL) {
 			continue;

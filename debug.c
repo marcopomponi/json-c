@@ -30,8 +30,8 @@
 
 #include "debug.h"
 
-static int _syslog = 0;
-static int _debug = 0;
+static int _syslog=0;
+static int _debug=0;
 
 void mc_set_debug(int debug)
 {

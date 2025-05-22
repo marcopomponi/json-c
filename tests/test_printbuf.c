@@ -172,7 +172,7 @@ static void test_sprintbuf(int before_resize)
 
 int main(int argc, char **argv)
 {
-	int before_resize = 0;
+	int before_resize=0;
 
 	MC_SET_DEBUG(1);
 

@@ -42,7 +42,7 @@ struct printbuf *printbuf_new(void)
 	if (!p)
 		return NULL;
 	p->size = 32;
-	p->bpos = 0;
+	p->bpos=0;
 	if (!(p->buf = (char *)malloc(p->size)))
 	{
 		free(p);
@@ -179,7 +179,7 @@ int sprintbuf(struct printbuf *p, const char *msg, ...)
 void printbuf_reset(struct printbuf *p)
 {
 	p->buf[0] = '\0';
-	p->bpos = 0;
+	p->bpos=0;
 }
 
 void printbuf_free(struct printbuf *p)

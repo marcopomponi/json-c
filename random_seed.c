@@ -74,7 +74,7 @@ static int has_rdrand(void)
 	do_cpuid(regs, 1);
 	if (!(regs[2] & (1 << 30)))
 	{
-		_has_rdrand = 0;
+		_has_rdrand=0;
 		return 0;
 	}
 
@@ -87,9 +87,9 @@ static int has_rdrand(void)
 	 * https://github.com/systemd/systemd/issues/11810
 	 * https://linuxreviews.org/RDRAND_stops_returning_random_values_on_older_AMD_CPUs_after_suspend
 	 */
-	_has_rdrand = 0;
+	_has_rdrand=0;
 	int prev = get_rdrand_seed();
-	for (int i = 0; i < 3; i++)
+	for (int i=0; i < 3; i++)
 	{
 		int temp = get_rdrand_seed();
 		if (temp != prev)
@@ -272,7 +272,7 @@ static int get_dev_random_seed(int *seed)
 
 static int get_cryptgenrandom_seed(int *seed)
 {
-	HCRYPTPROV hProvider = 0;
+	HCRYPTPROV hProvider=0;
 	DWORD dwFlags = CRYPT_VERIFYCONTEXT;
 
 	DEBUG_SEED("get_cryptgenrandom_seed");
@@ -333,21 +333,21 @@ int json_c_get_random_seed(void)
 #else
 #ifdef HAVE_GETRANDOM
 	{
-		int seed = 0;
+		int seed=0;
 		if (get_getrandom_seed(&seed) == 0)
 			return seed;
 	}
 #endif
 #if defined HAVE_DEV_RANDOM && HAVE_DEV_RANDOM
 	{
-		int seed = 0;
+		int seed=0;
 		if (get_dev_random_seed(&seed) == 0)
 			return seed;
 	}
 #endif
 #if defined HAVE_CRYPTGENRANDOM && HAVE_CRYPTGENRANDOM
 	{
-		int seed = 0;
+		int seed=0;
 		if (get_cryptgenrandom_seed(&seed) == 0)
 			return seed;
 	}

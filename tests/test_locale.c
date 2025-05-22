@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	// string that was parsed.  (see json_object_new_double_s())
 	printf("new_obj.to_string()=[");
 	unsigned int ii;
-	for (ii = 0; ii < json_object_array_length(new_obj); ii++)
+	for (ii=0; ii < json_object_array_length(new_obj); ii++)
 	{
 		json_object *val = json_object_array_get_idx(new_obj, ii);
 		printf("%s%.2lf", (ii > 0) ? "," : "", json_object_get_double(val));
